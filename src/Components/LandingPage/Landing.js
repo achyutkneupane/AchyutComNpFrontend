@@ -11,15 +11,16 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./Landing.css";
 
 function Landing() {
+    
     return (
-        <section id="landingPage" className="container d-flex flex-row justify-content-center justify-content-md-start align-items-center w-100 h-100">
+        <section id="landingPage" className="container d-flex flex-column justify-content-center align-items-center align-items-md-start w-100 vh-100">
             <div
                 className="row w-100"
                 data-aos="fade-up"
                 data-aos-delay="50"
                 data-aos-duration="1000"
             >
-                <div className="col-12 col-md-6">
+                <div className="col-12">
                     <h1 className="mainTitle text-white text-md-start text-center my-2">
                         Achyut Neupane
                     </h1>

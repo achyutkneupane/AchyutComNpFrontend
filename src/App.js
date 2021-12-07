@@ -19,15 +19,23 @@ function App() {
 
   return (
     <div className="bgImage">
-        <div className="bgBlack overflow-scroll w-100 h-100" data-spy="scroll" data-target=".sideNav" data-offset="50">
-            <Landing />
-            <About />
-            <Skill />
-            <Experience />
-            <Education />
-            <Contact />
+        <div className="bgBlack overflow-scroll w-100 h-100">
+          <div className='container px-4'>
+            <div className='row w-100'>
+              <div className='col-12 col-lg-8'>
+                <Landing />
+                <About />
+                <Skill />
+                <Experience />
+                <Education />
+                <Contact />
+              </div>
+              <div className='col-lg-4 d-flex justify-content-end'>
+                <SideNav />
+              </div>
+            </div>
+          </div>
         </div>
-        <SideNav />
     </div>
   );
 }

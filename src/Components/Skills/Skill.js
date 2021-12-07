@@ -19,14 +19,14 @@ function Skill() {
       style={{ paddingTop: "15vh" }}
     >
       <div className="row w-100">
-        <div className="col-12 col-lg-8 col-xl-6">
+        <div className="col-12">
           <h2 className="text-white display-1 font-weight-bold text-center">
             <strong className="text-center sectionTitle">Skills</strong>
           </h2>
         </div>
       </div>
       <div className="row w-100">
-        <div className="col-12 col-lg-8 col-xl-6 text-white lead">
+        <div className="col-12 text-white lead">
           <div className="row justify-content-center">
             <div className="col-6 col-lg-4 text-center p-2 p-lg-4">
               <FontAwesomeIcon

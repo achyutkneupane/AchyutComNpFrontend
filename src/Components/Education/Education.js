@@ -9,7 +9,7 @@ function Education() {
             className="container d-flex flex-column justify-content-center align-items-center align-items-md-start w-100 sectionDivider gap-4"
         >
             <div className="row w-100">
-                <div className="col-12 col-lg-8 col-xl-6">
+                <div className="col-12">
                     <h2 className="text-white display-1 font-weight-bold text-center">
                         <strong className='sectionTitle'>
                             Education
@@ -18,7 +18,7 @@ function Education() {
                 </div>
             </div>
             <div className='row w-100'>
-                <div className='col-12 col-lg-8 col-xl-6 text-white d-flex flex-column gap-5'>
+                <div className='col-12 text-white d-flex flex-column gap-5'>
                     <div className="w-100">
                         <h2 className='display-6 d-flex flex-row gap-4 align-items-center'>
                             <FontAwesomeIcon
