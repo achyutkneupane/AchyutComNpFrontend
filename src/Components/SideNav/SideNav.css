@@ -1,0 +1,5 @@
+.sectionList {
+    transition-property: font-size;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
