@@ -11,7 +11,10 @@ function Experience() {
             <div className="row w-100">
                 <div className="col-12">
                     <h2 className="text-white display-1 font-weight-bold text-center">
-                        <strong className='sectionTitle'>
+                        <strong className='sectionTitle'
+              data-aos="fade-in"
+              data-aos-delay="0"
+              data-aos-duration="1000">
                             Experience
                         </strong>
                     </h2>
@@ -20,18 +23,27 @@ function Experience() {
             <div className='row w-100'>
                 <div className='col-12 text-white d-flex flex-col'>
                     <div className="w-100">
-                        <h2 className='display-5 d-flex flex-row gap-4 align-items-center'>
+                        <h2 className='display-5 d-flex flex-row gap-4 align-items-center'
+              data-aos="fade-up"
+              data-aos-delay="0"
+              data-aos-duration="1000">
                             <FontAwesomeIcon
                                 icon={faLaravel}
                                 style={{ color: "#fb503b" }}
                             />
                             <b>Laravel Developer</b>
                         </h2>
-                        <div className='d-flex flex-row justify-content-between align-items-center'>
+                        <div className='d-flex flex-row justify-content-between align-items-center'
+              data-aos="fade-up"
+              data-aos-delay="50"
+              data-aos-duration="1000">
                             <h3 className='display-7'>Kumberland Inc.</h3>
                             <span className='text-base'>Feb. 21 - August 21</span>
                         </div>
-                        <div className='lead'>
+                        <div className='lead'
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="1000">
                             Kumberland is an Ontario-based company that offers outsourced services including Marketing, and Web Development solutions in Canada and the Caribbean.
                         </div>
                     </div>

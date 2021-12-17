@@ -41,46 +41,76 @@ function Landing() {
                                 data-aos-duration="1000"
                             />
                         </a>
-                        <FontAwesomeIcon
-                            icon={faGithub}
-                            size="2x"
-                            style={{ color: "#ffffff" }}
-                            data-aos="fade-up"
-                            data-aos-delay="100"
-                            data-aos-duration="1000"
-                        />
-                        <FontAwesomeIcon
-                            icon={faFacebook}
-                            size="2x"
-                            style={{ color: "#ffffff" }}
-                            data-aos="fade-up"
-                            data-aos-delay="150"
-                            data-aos-duration="1000"
-                        />
-                        <FontAwesomeIcon
-                            icon={faInstagram}
-                            size="2x"
-                            style={{ color: "#ffffff" }}
-                            data-aos="fade-up"
-                            data-aos-delay="200"
-                            data-aos-duration="1000"
-                        />
-                        <FontAwesomeIcon
-                            icon={faYoutube}
-                            size="2x"
-                            style={{ color: "#ffffff" }}
-                            data-aos="fade-up"
-                            data-aos-delay="250"
-                            data-aos-duration="1000"
-                        />
-                        <FontAwesomeIcon
-                            icon={faEnvelope}
-                            size="2x"
-                            style={{ color: "#ffffff" }}
-                            data-aos="fade-up"
-                            data-aos-delay="300"
-                            data-aos-duration="1000"
-                        />
+                        <a
+                            href="https://www.github.com/achyutkneupane/"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon
+                                icon={faGithub}
+                                size="2x"
+                                style={{ color: "#ffffff" }}
+                                data-aos="fade-up"
+                                data-aos-delay="100"
+                                data-aos-duration="1000"
+                            />
+                        </a>
+                        <a
+                            href="https://www.facebook.com/ThisIsAchyut"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon
+                                icon={faFacebook}
+                                size="2x"
+                                style={{ color: "#ffffff" }}
+                                data-aos="fade-up"
+                                data-aos-delay="150"
+                                data-aos-duration="1000"
+                            />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/achyut.neupane"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon
+                                icon={faInstagram}
+                                size="2x"
+                                style={{ color: "#ffffff" }}
+                                data-aos="fade-up"
+                                data-aos-delay="200"
+                                data-aos-duration="1000"
+                            />
+                        </a>
+                        <a
+                            href="https://www.youtube.com/AchyutNeupane"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon
+                                icon={faYoutube}
+                                size="2x"
+                                style={{ color: "#ffffff" }}
+                                data-aos="fade-up"
+                                data-aos-delay="250"
+                                data-aos-duration="1000"
+                            />
+                        </a>
+                        <a
+                            href="mailto:achyut072bex@ioepc.edu.np"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                size="2x"
+                                style={{ color: "#ffffff" }}
+                                data-aos="fade-up"
+                                data-aos-delay="300"
+                                data-aos-duration="1000"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>

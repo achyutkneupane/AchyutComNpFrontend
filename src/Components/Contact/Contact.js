@@ -9,7 +9,10 @@ function Contact() {
             <div className="row w-100">
                 <div className="col-12">
                     <h2 className="text-white display-1 font-weight-bold text-center">
-                        <strong className='sectionTitle'>
+                        <strong className='sectionTitle'
+              data-aos="fade-in"
+              data-aos-delay="0"
+              data-aos-duration="1000">
                             Contact Me
                         </strong>
                     </h2>
