@@ -19,23 +19,25 @@ function App() {
 
   return (
     <div className="bgImage">
-        <div className="bgBlack overflow-scroll w-100 h-100">
-          <div className='container px-4'>
-            <div className='row w-100'>
-              <div className='col-12 col-lg-8'>
-                <Landing />
-                <About />
-                <Skill />
-                <Experience />
-                <Education />
-                <Contact />
-              </div>
-              <div className='col-lg-4 d-flex justify-content-end'>
+      <div className="bgBlack overflow-scroll w-100 h-100">
+        <div className="container px-4">
+          <div className="row w-100">
+            <div className="col-12 col-lg-8">
+              <Landing />
+              <About />
+              <Skill />
+              <Experience />
+              <Education />
+              <Contact />
+            </div>
+            <div className="col-lg-4 d-flex justify-content-end">
+              <div className="position-fixed mb-4 d-none d-lg-flex sideNav text-end justify-content-start bottom-0">
                 <SideNav />
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 }

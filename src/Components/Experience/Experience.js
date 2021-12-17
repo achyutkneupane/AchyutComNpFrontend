@@ -6,7 +6,7 @@ function Experience() {
     return (
         <section
             id="experience"
-            className="container d-flex flex-column justify-content-center align-items-center align-items-md-start w-100 sectionDivider gap-4"
+            className="container d-flex flex-column justify-content-center align-items-center align-items-md-start w-100 sectionDivider gap-4 py-4"
         >
             <div className="row w-100">
                 <div className="col-12">
