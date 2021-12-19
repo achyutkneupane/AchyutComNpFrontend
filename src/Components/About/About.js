@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Parser from 'html-react-parser';
 
 function About() {
+
+    const [settings, setSettings] = useState([]);
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/settings")
+        .then(res => res.json())
+        .then(
+            result => {
+                setSettings(result);
+            },
+            error => {
+            }
+        );
+    }, []);
   return (
     <section
       id="aboutMe"
@@ -25,21 +40,11 @@ function About() {
           className="col-12 text-white lead text-center"
           style={{ fontSize: "1.6rem" }}
         >
-          <p data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-            Hey fellas. I am Achyut Neupane, originally from Dharan, Nepal
-            althogh currently residing in Dholahity, Lalitpur.
-          </p>
-          <p data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
-            I am a self-driven web developer doing PHP for years spending most
-            of my time doing Freelancing and personal projects. I am competent
-            in Laravel, Livewire, Bootstrap/Tailwind, and have sound knowledge
-            of React. I am also into music: done some stage shows and also
-            posted cover videos on my YouTube Channel.
-          </p>
-          <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-            I always have been fascinated by webpages. How they work was the key
-            but most importantly, how they are made were the road to learning.
-          </p>
+            {
+                settings?.map(setting => {
+                    return setting.key === 'aboutMe' ? Parser(String(setting.value)) : null;
+                })
+            }
         </div>
       </div>
     </section>

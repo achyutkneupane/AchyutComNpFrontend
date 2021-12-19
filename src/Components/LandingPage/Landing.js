@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faFacebook,
@@ -12,6 +12,52 @@ import "./Landing.css";
 
 function Landing() {
     
+    const [fullName, setFullName] = useState(null);
+    const [facebookLink, setFacebookLink] = useState(null);
+    const [instagramLink, setInstagramLink] = useState(null);
+    const [linkedinLink, setLinkedinLink] = useState(null);
+    const [githubLink, setGithubLink] = useState(null);
+    const [youtubeLink, setYoutubeLink] = useState(null);
+    const [emailAddress, setEmailAddress] = useState(null);
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/settings")
+        .then(res => res.json())
+        .then(
+            result => {
+                result.map(setting => {
+                    switch(setting.key) {
+                        case 'fullName':
+                            setFullName(setting.value);
+                            break;
+                        case 'facebookLink':
+                            setFacebookLink(setting.value);
+                            break;
+                        case 'linkedinLink':
+                            setLinkedinLink(setting.value);
+                            break;
+                        case 'githubLink':
+                            setGithubLink(setting.value);
+                            break;
+                        case 'instagramLink':
+                            setInstagramLink(setting.value);
+                            break;
+                        case 'youtubeLink':
+                            setYoutubeLink(setting.value);
+                            break;
+                        case 'emailAddress':
+                            setEmailAddress(setting.value);
+                            break;
+                        default:
+                            break;
+                    }
+                    return 0;
+                })
+            },
+            error => {
+            }
+        );
+    }, []);
     return (
         <section id="landingPage" className="container d-flex flex-column justify-content-center align-items-center align-items-md-start w-100 vh-100">
             <div
@@ -22,13 +68,13 @@ function Landing() {
             >
                 <div className="col-12">
                     <h1 className="mainTitle text-white text-md-start text-center my-2">
-                        Achyut Neupane
+                        {fullName}
                     </h1>
                 </div>
                 <div className="col-12">
                     <div className="d-flex flex-row justify-content-center justify-content-md-start text-white gap-2">
                         <a
-                            href="https://www.linkedin.com/in/achyutkneupane/"
+                            href={linkedinLink}
                             rel="noreferrer"
                             target="_blank"
                         >
@@ -42,7 +88,7 @@ function Landing() {
                             />
                         </a>
                         <a
-                            href="https://www.github.com/achyutkneupane/"
+                            href={githubLink}
                             rel="noreferrer"
                             target="_blank"
                         >
@@ -56,7 +102,7 @@ function Landing() {
                             />
                         </a>
                         <a
-                            href="https://www.facebook.com/ThisIsAchyut"
+                            href={facebookLink}
                             rel="noreferrer"
                             target="_blank"
                         >
@@ -70,7 +116,7 @@ function Landing() {
                             />
                         </a>
                         <a
-                            href="https://www.instagram.com/achyut.neupane"
+                            href={instagramLink}
                             rel="noreferrer"
                             target="_blank"
                         >
@@ -84,7 +130,7 @@ function Landing() {
                             />
                         </a>
                         <a
-                            href="https://www.youtube.com/AchyutNeupane"
+                            href={youtubeLink}
                             rel="noreferrer"
                             target="_blank"
                         >
@@ -98,7 +144,7 @@ function Landing() {
                             />
                         </a>
                         <a
-                            href="mailto:achyut072bex@ioepc.edu.np"
+                            href={'mailto:'+emailAddress}
                             rel="noreferrer"
                             target="_blank"
                         >

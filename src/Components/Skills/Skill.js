@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBootstrap,
-  faDocker,
-  faGitAlt,
-  faJs,
-  faLaravel,
-  faPhp,
-  faPython,
-  faReact,
-} from "@fortawesome/free-brands-svg-icons";
+import { fab as brandIcons } from "@fortawesome/free-brands-svg-icons";
+import ReactHtmlParser from 'html-react-parser';
 
 function Skill() {
+  const [skills, setSkills] = useState([])
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/skills")
+      .then(res => res.json())
+      .then(
+        result => {
+          setSkills(result);
+        },
+        error => {
+        }
+      );
+  }, []);
+
   return (
     <section
       id="skills"
@@ -35,123 +41,40 @@ function Skill() {
       <div className="row w-100">
         <div className="col-12 text-white lead">
           <div className="row justify-content-center">
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out-right"
-              data-aos-delay="0"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faPhp}
-                size="4x"
-                style={{ color: "#474A8A" }}
-              />
-              <div className="display-6">PHP</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out"
-              data-aos-delay="0"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faPython}
-                size="4x"
-                style={{ color: "#306998" }}
-              />
-              <div className="display-6">Python</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out-left"
-              data-aos-delay="0"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faJs}
-                size="4x"
-                style={{ color: "#f0db4f" }}
-              />
-              <div className="display-6">JavaScript</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out-right"
-              data-aos-delay="100"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faLaravel}
-                size="4x"
-                style={{ color: "#fb503b" }}
-              />
-              <div className="display-6">Laravel</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out"
-              data-aos-delay="100"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faReact}
-                size="4x"
-                style={{ color: "#61dbfb" }}
-              />
-              <div className="display-6">React</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out-left"
-              data-aos-delay="100"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faBootstrap}
-                size="4x"
-                style={{ color: "#563d7c" }}
-              />
-              <div className="display-6">Bootstrap</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out-right"
-              data-aos-delay="150"
-              data-aos-duration="1000"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png"
-                width="80px"
-                alt="tailwindCSS"
-              />
-              <div className="display-6">Tailwind</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out"
-              data-aos-delay="150"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faGitAlt}
-                size="4x"
-                style={{ color: "#f1502f" }}
-              />
-              <div className="display-6">Git</div>
-            </div>
-            <div
-              className="col-6 col-lg-4 text-center p-2 p-lg-4"
-              data-aos="zoom-out-left"
-              data-aos-delay="150"
-              data-aos-duration="1000"
-            >
-              <FontAwesomeIcon
-                icon={faDocker}
-                size="4x"
-                style={{ color: "#0db7ed" }}
-              />
-              <div className="display-6">Docker</div>
-            </div>
+            {skills?.map((skill,key) => {
+              if(skill.icon_type === 'fa') {
+                return (<div
+                  className="col-6 col-lg-4 text-center p-2 p-lg-4"
+                  data-aos={key%3 === 0 ? 'zoom-out-right' : (key%3 === 1 ? 'zoom-out' : 'zoom-out-left')}
+                  data-aos-delay={Math.floor(key/3)*150}
+                  data-aos-duration="1000"
+                  key={skill.id}
+                >
+                  <FontAwesomeIcon
+                    icon={brandIcons[skill.icon]}
+                    size="4x"
+                    style={{ color: skill.color }}
+                  />
+                  <div className="display-6">{skill.title}</div>
+                </div>)
+              }
+              else if(skill.icon_type === 'svg')
+              {
+                return (
+                  <div
+                    className="col-6 col-lg-4 text-center p-2 p-lg-4"
+                    data-aos={key%3 === 0 ? 'zoom-out-right' : (key%3 === 1 ? 'zoom-out' : 'zoom-out-left')}
+                    data-aos-delay={Math.floor(key/3)*150}
+                    data-aos-duration="1000"
+                    key={skill.id}
+                  >
+                    {ReactHtmlParser(skill.icon)}
+                    <div className="display-6">{skill.title}</div>
+                  </div>
+                )
+              }
+              return 0;
+              })}
           </div>
         </div>
       </div>

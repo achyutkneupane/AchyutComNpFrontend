@@ -1,13 +1,22 @@
-import {
-  faChalkboardTeacher,
-  faSchool,
-  faUniversity,
-  faUserGraduate,
-} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import { fab as brandIcons } from "@fortawesome/free-brands-svg-icons";
+import React, { useEffect, useState } from "react";
+import moment from "moment";
 
 function Education() {
+  const [educations, setEducations] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/educations")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setEducations(result);
+        },
+        (error) => {}
+      );
+  }, []);
+
   return (
     <section
       id="education"
@@ -29,77 +38,35 @@ function Education() {
       </div>
       <div className="row w-100">
         <div className="col-12 text-white d-flex flex-column gap-5">
-          <div
-            className="w-100"
-            data-aos="flip-up"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-          >
-            <h2 className="display-6 d-flex flex-row gap-4 align-items-center">
-              <FontAwesomeIcon
-                icon={faUniversity}
-                style={{ color: "#ffffff" }}
-              />
-              <b>Bachelors in Computer Science</b>
-            </h2>
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <h3 className="display-7">
-                Sunway International Business School
-              </h3>
-              <span className="text-base">Sept. 21 - Running</span>
-            </div>
-          </div>
-          <div
-            className="w-100"
-            data-aos="flip-up"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-          >
-            <h2 className="display-6 d-flex flex-row gap-4 align-items-center">
-              <FontAwesomeIcon
-                icon={faUserGraduate}
-                style={{ color: "#ffffff" }}
-              />
-              <b>Higher Secondary Level</b>
-            </h2>
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <h3 className="display-7">Bharabi Science Academy (H.S.S)</h3>
-              <span className="text-base">June 13 - June 15</span>
-            </div>
-          </div>
-          <div
-            className="w-100"
-            data-aos="flip-up"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-          >
-            <h2 className="display-6 d-flex flex-row gap-4 align-items-center">
-              <FontAwesomeIcon icon={faSchool} style={{ color: "#ffffff" }} />
-              <b>Lower Secondary Level</b>
-            </h2>
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <h3 className="display-7">Carmel High School</h3>
-              <span className="text-base">May 08 - April 13</span>
-            </div>
-          </div>
-          <div
-            className="w-100"
-            data-aos="flip-up"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-          >
-            <h2 className="display-6 d-flex flex-row gap-4 align-items-center">
-              <FontAwesomeIcon
-                icon={faChalkboardTeacher}
-                style={{ color: "#ffffff" }}
-              />
-              <b>Primary Level</b>
-            </h2>
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <h3 className="display-7">Depot Higher Secondary School</h3>
-              <span className="text-base">May 01 - April 08</span>
-            </div>
-          </div>
+          {educations?.map(education => {
+              console.log(education);
+            return (
+                <div
+                className="w-100"
+                data-aos="flip-up"
+                data-aos-delay="50"
+                data-aos-duration="1000"
+                key={'education-'+education.id}
+                >
+                <h2 className="display-6 d-flex flex-row gap-4 align-items-center">
+                    <FontAwesomeIcon
+                        icon={brandIcons[education.id]}
+                        size="4x"
+                        style={{ color: education.color }}
+                    />
+                    <b>{education.type}</b>
+                </h2>
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                    <h3 className="display-7">
+                    {education.institute}
+                    </h3>
+                    <span className="text-base">
+                    {moment(education.started_at).format("MMM YY")} -{" "}
+                    {education.completed_at ? moment(education.completed_at).format("MMM YY") : 'Running'}
+                    </span>
+                </div>
+                </div>
+            )})}
         </div>
       </div>
     </section>
