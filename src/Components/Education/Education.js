@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fab as brandIcons } from "@fortawesome/free-brands-svg-icons";
+import { fas as solidIcons } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
@@ -7,7 +7,7 @@ function Education() {
   const [educations, setEducations] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/educations")
+    fetch(process.env.REACT_APP_API_LINK+"educations")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -39,7 +39,6 @@ function Education() {
       <div className="row w-100">
         <div className="col-12 text-white d-flex flex-column gap-5">
           {educations?.map(education => {
-              console.log(education);
             return (
                 <div
                 className="w-100"
@@ -50,9 +49,8 @@ function Education() {
                 >
                 <h2 className="display-6 d-flex flex-row gap-4 align-items-center">
                     <FontAwesomeIcon
-                        icon={brandIcons[education.id]}
-                        size="4x"
-                        style={{ color: education.color }}
+                        icon={solidIcons[education.icon]}
+                        style={{ color: '#ffffff' }}
                     />
                     <b>{education.type}</b>
                 </h2>

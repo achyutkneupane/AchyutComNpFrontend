@@ -7,7 +7,7 @@ function Skill() {
   const [skills, setSkills] = useState([])
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/skills")
+    fetch(process.env.REACT_APP_API_LINK+"skills")
       .then(res => res.json())
       .then(
         result => {

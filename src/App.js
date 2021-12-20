@@ -11,6 +11,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "aos/dist/aos";
 
+require('dotenv').config();
+
 function App() {
   useEffect(() => {
     AOS.init();
@@ -20,7 +22,7 @@ function App() {
   return (
     <div className="bgImage">
       <div className="bgBlack overflow-scroll w-100 h-100">
-        <div className="container px-4">
+        <div className="container px-0 px-sm-4">
           <div className="row w-100">
             <div className="col-12 col-lg-8">
               <Landing />

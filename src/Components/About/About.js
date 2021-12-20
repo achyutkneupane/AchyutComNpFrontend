@@ -6,7 +6,7 @@ function About() {
     const [settings, setSettings] = useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/settings")
+        fetch(process.env.REACT_APP_API_LINK+"settings")
         .then(res => res.json())
         .then(
             result => {

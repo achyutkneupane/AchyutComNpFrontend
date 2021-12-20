@@ -7,7 +7,7 @@ function Experience() {
   const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/experiences")
+    fetch(process.env.REACT_APP_API_LINK+"experiences")
       .then((res) => res.json())
       .then(
         (result) => {

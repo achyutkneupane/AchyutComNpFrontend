@@ -21,7 +21,7 @@ function Landing() {
     const [emailAddress, setEmailAddress] = useState(null);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/settings")
+        fetch(process.env.REACT_APP_API_LINK+"settings")
         .then(res => res.json())
         .then(
             result => {
