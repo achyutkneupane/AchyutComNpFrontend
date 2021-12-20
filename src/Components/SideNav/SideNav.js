@@ -2,7 +2,11 @@ import React from "react";
 import Scrollspy from "react-scrollspy";
 import "./SideNav.css";
 
-function SideNav() {
+function SideNav({resources}) {
+  resources.settings.read();
+  resources.skills.read();
+  resources.experiences.read();
+  resources.educations.read();
   return (
     <Scrollspy
         className="list-unstyled sectionList display-6"

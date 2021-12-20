@@ -10,8 +10,8 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./Landing.css";
 
-function Landing() {
-    
+function Landing({resources}) {
+    const [settings] = useState(resources.settings.read());
     const [fullName, setFullName] = useState(null);
     const [facebookLink, setFacebookLink] = useState(null);
     const [instagramLink, setInstagramLink] = useState(null);
@@ -19,45 +19,36 @@ function Landing() {
     const [githubLink, setGithubLink] = useState(null);
     const [youtubeLink, setYoutubeLink] = useState(null);
     const [emailAddress, setEmailAddress] = useState(null);
-
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_LINK+"settings")
-        .then(res => res.json())
-        .then(
-            result => {
-                result.map(setting => {
-                    switch(setting.key) {
-                        case 'fullName':
-                            setFullName(setting.value);
-                            break;
-                        case 'facebookLink':
-                            setFacebookLink(setting.value);
-                            break;
-                        case 'linkedinLink':
-                            setLinkedinLink(setting.value);
-                            break;
-                        case 'githubLink':
-                            setGithubLink(setting.value);
-                            break;
-                        case 'instagramLink':
-                            setInstagramLink(setting.value);
-                            break;
-                        case 'youtubeLink':
-                            setYoutubeLink(setting.value);
-                            break;
-                        case 'emailAddress':
-                            setEmailAddress(setting.value);
-                            break;
-                        default:
-                            break;
-                    }
-                    return 0;
-                })
-            },
-            error => {
+        settings.map(setting => {
+            switch(setting.key) {
+                case 'fullName':
+                    setFullName(setting.value);
+                    break;
+                case 'facebookLink':
+                    setFacebookLink(setting.value);
+                    break;
+                case 'linkedinLink':
+                    setLinkedinLink(setting.value);
+                    break;
+                case 'githubLink':
+                    setGithubLink(setting.value);
+                    break;
+                case 'instagramLink':
+                    setInstagramLink(setting.value);
+                    break;
+                case 'youtubeLink':
+                    setYoutubeLink(setting.value);
+                    break;
+                case 'emailAddress':
+                    setEmailAddress(setting.value);
+                    break;
+                default:
+                    break;
             }
-        );
-    }, []);
+            return 0;
+        })
+    },[])
     return (
         <section id="landingPage" className="container d-flex flex-column justify-content-center align-items-center align-items-md-start w-100 vh-100">
             <div

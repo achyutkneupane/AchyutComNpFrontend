@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Parser from 'html-react-parser';
+import React, { useState } from "react";
+import Parser from "html-react-parser";
 
-function About() {
-
-    const [settings, setSettings] = useState([]);
-
-    useEffect(() => {
-        fetch(process.env.REACT_APP_API_LINK+"settings")
-        .then(res => res.json())
-        .then(
-            result => {
-                setSettings(result);
-            },
-            error => {
-            }
-        );
-    }, []);
+function About({ resources }) {
+  const [settings] = useState(resources.settings.read());
   return (
     <section
       id="aboutMe"
@@ -40,11 +27,11 @@ function About() {
           className="col-12 text-white lead text-center"
           style={{ fontSize: "1.6rem" }}
         >
-            {
-                settings?.map(setting => {
-                    return setting.key === 'aboutMe' ? Parser(String(setting.value)) : null;
-                })
-            }
+          {settings?.map((setting) => {
+            return setting.key === "aboutMe"
+              ? Parser(String(setting.value))
+              : null;
+          })}
         </div>
       </div>
     </section>
