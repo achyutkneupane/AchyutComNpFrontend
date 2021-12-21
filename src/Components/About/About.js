@@ -3,6 +3,8 @@ import Parser from "html-react-parser";
 
 function About({ resources }) {
   const [settings] = useState(resources.settings.read());
+  const [screenWidth, setScreenWidth] = useState(document.documentElement.clientWidth);
+  window.addEventListener('resize',() => { setScreenWidth(document.documentElement.clientWidth) });
   return (
     <section
       id="aboutMe"
@@ -25,7 +27,7 @@ function About({ resources }) {
       <div className="row w-100">
         <div
           className="col-12 text-white lead text-center"
-          style={{ fontSize: "1.6rem" }}
+          style={{ 'fontSize': (screenWidth<576 ? '1.2rem' : '1.5rem' )}}
         >
           {settings?.map((setting) => {
             return setting.key === "aboutMe"

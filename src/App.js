@@ -30,7 +30,7 @@ function App() {
           <div className="row w-100">
             <Suspense
               fallback={
-                <div class="text-white vh-100 vw-100 d-flex justify-content-center align-items-center">
+                <div className="text-white vh-100 vw-100 d-flex justify-content-center align-items-center">
                   <SpinnerDotted size="10%" color="#ffffff" speed="150" />
                 </div>
               }

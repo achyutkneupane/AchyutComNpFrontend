@@ -1,6 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Contact() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [formSending, setFormSending] = useState(false);
+  const [success, setSuccess] = useState(null);
+
+  function sendContact(event) {
+    event.preventDefault();
+    setFormSending(true);
+    setSuccess(null);
+    fetch(process.env.REACT_APP_API_LINK + "contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullName: fullName,
+        email: email,
+        message: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setSuccess(response);
+        setFormSending(false);
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      })
+      .catch(() => {
+        setSuccess(false);
+        setFormSending(false);
+      });
+  }
+
   return (
     <section
       id="contactMe"
@@ -32,7 +67,10 @@ function Contact() {
               type="text"
               className="form-control form-control-sm bg-transparent text-white"
               id="fullName"
-              placeholder="name@example.com"
+              placeholder="Full Name"
+              value={fullName}
+              onChange={(ev) => setFullName(ev.target.value)}
+              required
             />
             <label htmlFor="fullName">Full Name</label>
           </div>
@@ -41,9 +79,12 @@ function Contact() {
               type="email"
               className="form-control form-control-sm bg-transparent text-white"
               id="emailAddress"
-              placeholder="name@example.com"
+              placeholder="Email Address"
+              value={email}
+              onChange={(ev) => setEmail(ev.target.value)}
+              required
             />
-            <label htmlFor="emailAddress">Email address</label>
+            <label htmlFor="emailAddress">Email Address</label>
           </div>
           <div className="form-floating mb-3">
             <textarea
@@ -51,13 +92,38 @@ function Contact() {
               placeholder="Enter Your Message"
               id="messageBox"
               style={{ height: "200px" }}
+              value={message}
+              onChange={(ev) => setMessage(ev.target.value)}
+              required
             ></textarea>
             <label htmlFor="messageBox">Message</label>
           </div>
+          <div className="form-row text-center mt-1 mb-3">
+            {success === null ? (
+              ""
+            ) : success ? (
+              <div className="text-success">The message sent successfully.</div>
+            ) : (
+              <div className="text-danger">
+                There is an error with message. Please try again.
+              </div>
+            )}
+          </div>
           <div className="form-row w-100">
-            <button className="btn btn-outline-light bg-transparent btn-lg w-100">
-              Submit
-            </button>
+            {formSending ? (
+              <button
+                className="btn btn-outline-light bg-transparent btn-lg w-100"
+              >
+                Sending...
+              </button>
+            ) : (
+              <button
+                className="btn btn-outline-light bg-transparent btn-lg w-100"
+                onClick={sendContact}
+              >
+                Submit
+              </button>
+            )}
           </div>
         </div>
       </div>
